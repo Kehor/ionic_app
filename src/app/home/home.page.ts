@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { RestService } from '../rest.service';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { NativeStorageSave } from './../native-storage';
+
 
 @Component({
   selector: 'app-home',
@@ -9,14 +12,19 @@ import { RestService } from '../rest.service';
 
 export class HomePage {
 
-  db;
-  constructor(private restservice: RestService) {
+  constructor(private restservice: RestService, public save: NativeStorageSave) {
 
     this.restservice.getUser()
-    .then(dataFetched => {
-      this.db = dataFetched;
-      console.log(this.db);
+    .then(data => {
+      this.save.users = data;
+      console.log(this.save.users);
     });
+
+    if (this.save.users){
+      save.storeData();
+    }else{
+      save.getData();
+    }
   }
 
 }

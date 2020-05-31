@@ -1,3 +1,4 @@
+import { HomePage } from './home/home.page';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
@@ -10,6 +11,8 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { RestService } from './rest.service';
+import { NativeStorage } from '@ionic-native/native-storage/ngx';
+import { NativeStorageSave } from './native-storage';
 
 @NgModule({
   declarations: [AppComponent],
@@ -19,7 +22,10 @@ import { RestService } from './rest.service';
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    RestService
+    RestService,
+    HomePage,
+    NativeStorage,
+    NativeStorageSave
   ],
   bootstrap: [AppComponent]
 })
