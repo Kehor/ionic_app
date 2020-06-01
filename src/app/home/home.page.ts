@@ -18,13 +18,12 @@ export class HomePage {
     .then(data => {
       this.save.users = data;
       console.log(this.save.users);
+      if (data){
+        save.storeData();
+      }else{
+        save.getData();
+      }
     });
-
-    if (this.save.users){
-      save.storeData();
-    }else{
-      save.getData();
-    }
   }
 
 }
